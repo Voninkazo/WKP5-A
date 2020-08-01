@@ -31,6 +31,10 @@
             text-align: center;
         }
         
+        .wrapper {
+            background-color: #93a5cf;
+        }
+        
         button {
             cursor: pointer;
             background-color: #667eea;
@@ -41,6 +45,30 @@
             padding-block-end: 0.75rem;
             border-radius: 0.5rem;
         }
+        
+        .outer-modal {
+            display: grid;
+            place-items: center center;
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            width: 400px;
+            height: 200px;
+            background-color: gray;
+            pointer-events: none;
+            display: none;
+        }
+        
+        .outer-modal.open {
+            pointer-events: all;
+            display: block;
+        }
+        
+        .inner-modal {
+            background-color: lightgray;
+            min-width: 300px;
+            min-height: 300px;
+        }
     </style>
 </head>
 
@@ -49,6 +77,13 @@
 
     </div>
     <button class="generate">GENERATE RECIPES</button>
+    <!-- <button class="button-info">
+		More Information
+	</button> -->
+    <div class="outer-modal">
+        <div class="inner-modal">
+        </div>
+    </div>
 </body>
 <script src="script.js"></script>
 

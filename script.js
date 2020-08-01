@@ -107,8 +107,33 @@ const closeModal = event => {
     }
 };
 
-// listen for the escape key
+// close modal
 window.addEventListener('click', closeModal);
+
+// grab the properties from the object 
+// const myStepList = recipe.steps;
+// const myEngredientList = recipe.ingredients;
+
+// // loop through the steps
+// const generateStepLists = () => {
+//     let stepItems = [];
+//     for (var i = 0; i < myStepList.length; i++) {
+//         stepItems[i] = '<li>' + myStepList[i] + '</li>';
+//     }
+// }
+
+// //loop through the ingredients
+// const generateIngredientLists = () => {
+//     let ingredientItems = [];
+//     for (var s = 0; s < ingredientItems.length; s++) {
+//         ingredientItems[s] = '<li>' + myEngredientList[s] + '</li>';
+//     }
+// }
+
+// const realSteps = generateStepLists();
+// const realIngredients = generateIngredientLists();
+
+
 
 // handle button info click
 window.addEventListener('click', event => {
@@ -148,21 +173,25 @@ window.addEventListener('click', event => {
 });
 
 
+
+// show form
+
 window.addEventListener('click', event => {
+    event.preventDefault();
     if (event.target.matches('.button-add')) {
         openModal();
 
         const newRecipe = `
     
 			<form id="addRecipeForm">
-      <label for="title">What's the recipe name?</label>
-      <input
-        id="title"
-        name="title"
-        type="text"
-        placeholder="The name of your recipe"
-        value="Eggs"
-      />
+        <label for="title">What's the recipe name?</label>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          placeholder="The name of your recipe"
+          value="Eggs"
+        />
       <label for="picture">Picture of the result (URL)</label>
       <input
         type="url"
@@ -222,4 +251,4 @@ window.addEventListener('click', event => {
     `;
         innerModal.insertAdjacentHTML('beforeend', newRecipe);
     }
-})
+});

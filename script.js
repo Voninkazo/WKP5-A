@@ -73,7 +73,7 @@ const renderCard = () => {
 							  <p class="difficulty">Difficulty: ${recipe.difficulty}</p>
 						    </li>
 						    </ul>
-						    <button class="button-info">
+						    <button class="button-info button-primary">
 							    More Information
 						    </button>
 					  </div>
@@ -122,7 +122,7 @@ window.addEventListener('click', event => {
         openModal();
         // create the outer modal that containes the recipe details
         const myRecipe = `
-          <section>
+          <section class="detailes">
               <h2> ${recipe.title} by <small> ${recipe.author} </small></h2>
               <p class="recipe-photo">
                   <img src="${recipe.picture}" alt="Delicious recipe">
@@ -146,3 +146,80 @@ window.addEventListener('click', event => {
         grabModal.insertAdjacentHTML('beforeend', myRecipe);
     }
 });
+
+
+window.addEventListener('click', event => {
+    if (event.target.matches('.button-add')) {
+        openModal();
+
+        const newRecipe = `
+    
+			<form id="addRecipeForm">
+      <label for="title">What's the recipe name?</label>
+      <input
+        id="title"
+        name="title"
+        type="text"
+        placeholder="The name of your recipe"
+        value="Eggs"
+      />
+      <label for="picture">Picture of the result (URL)</label>
+      <input
+        type="url"
+        id="picture"
+        name="picture"
+        placeholder="Enter the URL of your picture"
+        value="https://bit.ly/2ByKjgb"
+      />
+      <label for="author">Who's the chef?</label>
+      <input
+        type="Text"
+        name="author"
+        id="author"
+        placeholder="Type in the chef's name"
+        value="Loïc"
+      />
+      <label for="difficulty">What's the difficulty?</label>
+      <select name="difficulty" id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <label for="timing">How much time does it take?</label>
+      <select name="timing" id="timing">
+        <option value="<15min">Less than 15 minutes</option>
+        <option value="15min">15 minutes</option>
+        <option value="30min">30 minutes</option>
+        <option value="45min">45 minutes</option>
+        <option value="60min">1 hour</option>
+        <option value=">60min">More than an hour</option>
+      </select>
+      <label for="ingredient1">Ingredients</label>
+      <ul id="ingredientList">
+        <li>
+          <input
+            type="text"
+            id="ingredient1"
+            name="ingredient1"
+            value="Ingredient 1"
+          />
+        </li>
+      </ul>
+      <button type="button button-secondary" class="addIngredient">
+        Add a new ingredient to the list
+      </button>
+      <label for="step1">Steps</label>
+      <ul id="stepList">
+        <li>
+          <input type="text" id="step1" name="step1" value="Step 1" />
+        </li>
+      </ul>
+      <button type="button" class="addStep">
+        Add a new step to the list
+      </button>
+      <button type="submit" class="addRecipe button-secondary">Add your recipe</button>
+    </form>
+    `;
+        innerModal.insertAdjacentHTML('beforeend', newRecipe);
+    }
+})

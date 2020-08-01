@@ -40,7 +40,7 @@
             background-color: #93a5cf;
         }
         
-        button {
+        .button-primary {
             cursor: pointer;
             background-color: #667eea;
             color: #FFFF;
@@ -72,6 +72,34 @@
             min-width: 300px;
             min-height: 300px;
         }
+        
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 10px;
+        }
+        
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+        
+        li input {
+            margin-bottom: 10px;
+        }
+        
+        input {
+            width: 20rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: solid 1px lightgrey;
+        }
+        
+        .button-secondary {
+            padding: 0.5rem 1rem;
+            background-color: lightsalmon;
+            color: white;
+        }
     </style>
 </head>
 
@@ -79,14 +107,13 @@
     <div class="container">
 
     </div>
-    <button class="generate">GENERATE RECIPES</button>
-    <!-- <button class="button-info">
-		More Information
-	</button> -->
+    <button class="generate button-primary">GENERATE RECIPES</button>
+
     <div class="outer-modal">
         <div class="inner-modal">
         </div>
     </div>
+    <button class="button-add button-primary">Add a new recipe</button>
 </body>
 <script src="script.js"></script>
 

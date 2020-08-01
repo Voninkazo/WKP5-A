@@ -100,14 +100,15 @@ const openModal = () => {
 }
 
 // handle escape
-const handleEscapeKey = event => {
-    if (event.key === 'Escape') {
+const closeModal = event => {
+    const isOutside = !event.target.closest('.inner-modal');
+    if (isOutside) {
         outerModal.classList.remove('open');
     }
 };
 
 // listen for the escape key
-window.addEventListener('keydown', handleEscapeKey);
+window.addEventListener('click', closeModal);
 
 // handle button info click
 window.addEventListener('click', event => {

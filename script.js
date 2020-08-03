@@ -57,7 +57,7 @@ const renderCard = () => {
         // generate the HTML
         const myHTML =
             `
-					<section class="section" data-id=  "${recipe.id}" data-myIngredients="${recipes[i].ingredients}"  data-mySteps="${recipes[i].steps}" >
+					<section class="section" data-id=  "${recipe.id}">
 					  <div class="wrapper">
 						  <h1>${recipe.title}</h1>
 						  <ul class="container>

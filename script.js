@@ -57,25 +57,25 @@ const renderCard = () => {
         // generate the HTML
         const myHTML =
             `
-					<section class="section" data-id=  "${recipe.id}">
-					  <div class="wrapper">
-						  <h1>${recipe.title}</h1>
-						  <ul class="container>
-						    <li>
-						      <p class="recipe-photo">
-							      <img src="${recipe.picture}" alt="Delicious recipe">
-						      </p>
-						    </li>
-						    <li>
-							    <p class="timing">It's cooked during ${recipe.timing}min</p>
-						    </li>
-						    <li>
-							  <p class="difficulty">Difficulty: ${recipe.difficulty}</p>
-						    </li>
+					<section class="section" data-id="${recipe.id}">
+            <div class="wrapper">
+              <div class="container">
+                <h1>${recipe.title}</h1>
+                <p class="recipe-photo">
+                <img src="${recipe.picture}" alt="Delicious recipe">
+                </p>
+                <ul class="container>
+                  <li>
+                  <p class="timing">Duration: ${recipe.timing}min</p>
+                  </li>
+                  <li>
+                  <p class="difficulty">Difficulty: ${recipe.difficulty}</p>
+                  </li>
 						    </ul>
 						    <button class="button-info button-primary">
 							    More Information
-						    </button>
+                </button>
+              </div>
 					  </div>
 					</section>
 					`;
@@ -110,32 +110,17 @@ const closeModal = event => {
 // close modal
 window.addEventListener('click', closeModal);
 
-// loop through the ingrediets list
-// for (let i = 0; i < recipes.length; i++) {
-//     const myIngredients = recipes[i].ingredients;
-//     myIngredients.forEach(element => {
-//         return `<li>${element}</li>`;
-//     });
-
-//     //loop through the steps
-//     for (let i = 0; i < recipes.length; i++) {
-//         const mySteps = recipes[i].steps;
-//         mySteps.forEach(element => {
-//             return `<li>${element}</li>`;
-//         });
-
-// handle button info click
 window.addEventListener('click', event => {
-    if (event.target.matches('.button-info')) {
-        const parents = event.target.closest('.section');
-        const id = Number(parents.dataset.id);
-        console.log('id', id);
-        console.log('recipes', recipes);
-        const recipe = recipes.find(singleRecipe => singleRecipe.id === id);
-        console.log('recipe', recipe);
-        openModal();
-        // create the outer modal that containes the recipe details
-        const myRecipe = `
+            if (event.target.matches('.button-info')) {
+                const parents = event.target.closest('.section');
+                const id = Number(parents.dataset.id);
+                console.log('id', id);
+                console.log('recipes', recipes);
+                const recipe = recipes.find(singleRecipe => singleRecipe.id === id);
+                console.log('recipe', recipe);
+                openModal();
+                // create the outer modal that containes the recipe details
+                const myRecipe = `
                   <section class="detailes">
                       <h2> ${recipe.title} by <small> ${recipe.author} </small></h2>
                       <p class="recipe-photo">
@@ -147,11 +132,11 @@ window.addEventListener('click', event => {
                         <p>
                         Follow these following steps
                         </p>
-                        <ul> ${mySteps}</ul>
+                        <ul> ${recipe.steps.map(step => `<li>${step}</li>`).join("")}</ul>
                         <p>
                         And these are the ingredients
                         </p>
-                        <ul> ${myIngredients}</ul>
+                        <ul> ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join("")}</ul>
                     </ul>
                 </section>
                 `;

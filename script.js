@@ -57,7 +57,7 @@ const renderCard = () => {
         // generate the HTML
         const myHTML =
             `
-					<section class="section" data-id=  "${recipe.id}">
+					<section class="section" data-id=  "${recipe.id}" data-myIngredients="${recipes[i].ingredients}"  data-mySteps="${recipes[i].steps}" >
 					  <div class="wrapper">
 						  <h1>${recipe.title}</h1>
 						  <ul class="container>
@@ -110,30 +110,19 @@ const closeModal = event => {
 // close modal
 window.addEventListener('click', closeModal);
 
-// grab the properties from the object 
-// const myStepList = recipe.steps;
-// const myEngredientList = recipe.ingredients;
+// loop through the ingrediets list
+// for (let i = 0; i < recipes.length; i++) {
+//     const myIngredients = recipes[i].ingredients;
+//     myIngredients.forEach(element => {
+//         return `<li>${element}</li>`;
+//     });
 
-// // loop through the steps
-// const generateStepLists = () => {
-//     let stepItems = [];
-//     for (var i = 0; i < myStepList.length; i++) {
-//         stepItems[i] = '<li>' + myStepList[i] + '</li>';
-//     }
-// }
-
-// //loop through the ingredients
-// const generateIngredientLists = () => {
-//     let ingredientItems = [];
-//     for (var s = 0; s < ingredientItems.length; s++) {
-//         ingredientItems[s] = '<li>' + myEngredientList[s] + '</li>';
-//     }
-// }
-
-// const realSteps = generateStepLists();
-// const realIngredients = generateIngredientLists();
-
-
+//     //loop through the steps
+//     for (let i = 0; i < recipes.length; i++) {
+//         const mySteps = recipes[i].steps;
+//         mySteps.forEach(element => {
+//             return `<li>${element}</li>`;
+//         });
 
 // handle button info click
 window.addEventListener('click', event => {
@@ -147,25 +136,25 @@ window.addEventListener('click', event => {
         openModal();
         // create the outer modal that containes the recipe details
         const myRecipe = `
-          <section class="detailes">
-              <h2> ${recipe.title} by <small> ${recipe.author} </small></h2>
-              <p class="recipe-photo">
-                  <img src="${recipe.picture}" alt="Delicious recipe">
-              </p>
-              <p class="timing">It's cooked during ${recipe.timing}min</p>
-              <p class="difficulty">Difficulty: ${recipe.difficulty}</p>
-              <ul>
-                <p>
-                Follow these following steps
-                </p>
-                <li> ${recipe.steps}</li>
-                <p>
-                And these are the ingredients
-                </p>
-                <li> ${recipe.ingredients}</li>
-            </ul>
-        </section>
-        `;
+                  <section class="detailes">
+                      <h2> ${recipe.title} by <small> ${recipe.author} </small></h2>
+                      <p class="recipe-photo">
+                          <img src="${recipe.picture}" alt="Delicious recipe">
+                      </p>
+                      <p class="timing">It's cooked during ${recipe.timing}min</p>
+                      <p class="difficulty">Difficulty: ${recipe.difficulty}</p>
+                      <ul>
+                        <p>
+                        Follow these following steps
+                        </p>
+                        <ul> ${mySteps}</ul>
+                        <p>
+                        And these are the ingredients
+                        </p>
+                        <ul> ${myIngredients}</ul>
+                    </ul>
+                </section>
+                `;
         // put it in the DOM
         const grabModal = document.querySelector('.inner-modal');
         grabModal.insertAdjacentHTML('beforeend', myRecipe);
@@ -173,82 +162,77 @@ window.addEventListener('click', event => {
 });
 
 
-
-// show form
-
 window.addEventListener('click', event => {
-    event.preventDefault();
     if (event.target.matches('.button-add')) {
         openModal();
 
         const newRecipe = `
-    
-			<form id="addRecipeForm">
-        <label for="title">What's the recipe name?</label>
-        <input
-          id="title"
-          name="title"
-          type="text"
-          placeholder="The name of your recipe"
-          value="Eggs"
-        />
-      <label for="picture">Picture of the result (URL)</label>
-      <input
-        type="url"
-        id="picture"
-        name="picture"
-        placeholder="Enter the URL of your picture"
-        value="https://bit.ly/2ByKjgb"
-      />
-      <label for="author">Who's the chef?</label>
-      <input
-        type="Text"
-        name="author"
-        id="author"
-        placeholder="Type in the chef's name"
-        value="Loïc"
-      />
-      <label for="difficulty">What's the difficulty?</label>
-      <select name="difficulty" id="difficulty">
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-      <label for="timing">How much time does it take?</label>
-      <select name="timing" id="timing">
-        <option value="<15min">Less than 15 minutes</option>
-        <option value="15min">15 minutes</option>
-        <option value="30min">30 minutes</option>
-        <option value="45min">45 minutes</option>
-        <option value="60min">1 hour</option>
-        <option value=">60min">More than an hour</option>
-      </select>
-      <label for="ingredient1">Ingredients</label>
-      <ul id="ingredientList">
-        <li>
-          <input
-            type="text"
-            id="ingredient1"
-            name="ingredient1"
-            value="Ingredient 1"
-          />
-        </li>
-      </ul>
-      <button type="button button-secondary" class="addIngredient">
-        Add a new ingredient to the list
-      </button>
-      <label for="step1">Steps</label>
-      <ul id="stepList">
-        <li>
-          <input type="text" id="step1" name="step1" value="Step 1" />
-        </li>
-      </ul>
-      <button type="button" class="addStep">
-        Add a new step to the list
-      </button>
-      <button type="submit" class="addRecipe button-secondary">Add your recipe</button>
-    </form>
-    `;
+                <form id="addRecipeForm">
+                  <label for="title">What's the recipe name?</label>
+                  <input
+                    id="title"
+                    name="title"
+                    type="text"
+                    placeholder="The name of your recipe"
+                    value="Eggs"
+                  />
+                <label for="picture">Picture of the result (URL)</label>
+              <input
+                type="url"
+                id="picture"
+                name="picture"
+                placeholder="Enter the URL of your picture"
+                value="https://bit.ly/2ByKjgb"
+              />
+              <label for="author">Who's the chef?</label>
+              <input
+                type="Text"
+                name="author"
+                id="author"
+                placeholder="Type in the chef's name"
+                value="Loïc"
+              />
+              <label for="difficulty">What's the difficulty?</label>
+              <select name="difficulty" id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+              <label for="timing">How much time does it take?</label>
+              <select name="timing" id="timing">
+                <option value="<15min">Less than 15 minutes</option>
+                <option value="15min">15 minutes</option>
+                <option value="30min">30 minutes</option>
+                <option value="45min">45 minutes</option>
+                <option value="60min">1 hour</option>
+                <option value=">60min">More than an hour</option>
+              </select>
+              <label for="ingredient1">Ingredients</label>
+              <ul id="ingredientList">
+                <li>
+                  <input
+                    type="text"
+                    id="ingredient1"
+                    name="ingredient1"
+                    value="Ingredient 1"
+                  />
+                </li>
+                  </ul>
+              <button type="button button-secondary" class="addIngredient">
+                Add a new ingredient to the list
+              </button>
+              <label for="step1">Steps</label>
+              <ul id="stepList">
+                <li>
+                  <input type="text" id="step1" name="step1" value="Step 1" />
+                </li>
+              </ul>
+              <button type="button" class="addStep">
+                Add a new step to the list
+              </button>
+              <button type="submit" class="addRecipe button-secondary">Add your recipe</button>
+            </form>
+            `;
         innerModal.insertAdjacentHTML('beforeend', newRecipe);
     }
 });

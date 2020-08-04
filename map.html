@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+</head>
+
+<body>
+
+    <script>
+        // Make an array of numbers that are doubles of the first array
+        function doubleNumbers(arr) {
+            // your code here
+            return arr.map(elem => elem * 2);
+        }
+
+        console.log(doubleNumbers([2, 5, 100])); // [4, 10, 200]
+
+        //Take an array of numbers and make them strings
+        function stringItUp(arr) {
+            // your code here
+            // return arr.map(String);
+            return arr.map(number => number.toString());
+        }
+
+        console.log(stringItUp([2, 5, 100])); // ["2", "5", "100"]
+
+        // Capitalize each of an array of names
+        function capitalizeNames(arr) {
+            // your code here
+            return arr.map(name => {
+                const lowerCase = name.toLowerCase();
+                const firstLetter = lowerCase[0].toUpperCase();
+                return `${firstLetter}${lowerCase.slice(1)}`;
+            });
+        }
+
+        console.log(capitalizeNames(["john", "JACOB", "jinGleHeimer", "schmidt"]));
+        // ["John", "Jacob", "Jingleheimer", "Schmidt"]
+
+        //Make an array of strings of the names
+        function namesOnly(arr) {
+            // your code here
+            return arr.map(people => {
+                if (people.age > 18) {
+                    return `${people.name} can go to the Matrix`;
+                } else {
+                    return `${people.name} are under age!`;
+                }
+            })
+        }
+
+        console.log(namesOnly([{
+            name: "Angelina Jolie",
+            age: 80
+        }, {
+            name: "Eric Jones",
+            age: 2
+        }, {
+            name: "Paris Hilton",
+            age: 5
+        }, {
+            name: "Kayne West",
+            age: 16
+        }, {
+            name: "Bob Ziroll",
+            age: 100
+        }]));
+
+        // ["Angelina Jolie", "Eric Jones", "Paris Hilton", "Kayne West", "Bob Ziroll"]
+    </script>
+</body>
+
+</html>
